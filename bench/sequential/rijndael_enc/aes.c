@@ -26,6 +26,7 @@
   designed by Joan Daemen and Vincent Rijmen.
 */
 
+#include "gem5/m5ops.h"
 #include "aes.h"
 
 #include "aestab.h"

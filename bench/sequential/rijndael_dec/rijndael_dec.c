@@ -38,6 +38,8 @@
   -----------------------------------------------------------------------
 */
 
+
+#include "gem5/m5ops.h"
 #include "aes.h"
 #include "rijndael_dec_libc.h"
 
@@ -183,7 +185,9 @@ int main()
 {
 
   rijndael_dec_init();
-  rijndael_dec_main();
+    m5_reset_stats(0, 0);
+    rijndael_dec_main();
+    m5_dump_stats(0, 0);
 
   return ( rijndael_dec_return() );
 }

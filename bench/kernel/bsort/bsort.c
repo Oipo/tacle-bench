@@ -27,6 +27,8 @@
   Forward declaration of functions
 */
 
+#include "gem5/m5ops.h"
+
 void bsort_init( void );
 void bsort_main( void );
 int bsort_return( void );
@@ -126,7 +128,9 @@ void _Pragma( "entrypoint" ) bsort_main( void )
 int main( void )
 {
   bsort_init();
-  bsort_main();
+    m5_reset_stats(0, 0);
+    bsort_main();
+    m5_dump_stats(0, 0);
 
   return bsort_return();
 }

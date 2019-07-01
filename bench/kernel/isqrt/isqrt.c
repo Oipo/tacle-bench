@@ -20,6 +20,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 #include "basicmath_libc.h"
 #include "snipmath.h"
 
@@ -150,7 +151,9 @@ void _Pragma( "entrypoint" ) isqrt_main( void )
 int main( void )
 {
   isqrt_init();
-  isqrt_main();
+    m5_reset_stats(0, 0);
+    isqrt_main();
+    m5_dump_stats(0, 0);
   return isqrt_return();
 }
 

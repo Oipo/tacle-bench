@@ -26,6 +26,8 @@
     Original source: Turbo C Programming for Engineering by Hyun Soo Ahn
 */
 
+#include "gem5/m5ops.h"
+
 /*
     Forward declaration of functions
 */
@@ -104,7 +106,7 @@ int minver_minver( int side, double eps )
 
   int work[ 500 ], i, j, k, iw;
   int r = 0;
-  double w, wmax, pivot, api, w1;
+  double w = 0, wmax, pivot, api, w1;
 
   if ( side < 2 || side > 500 || eps <= 0.0 )
     return ( 999 );
@@ -250,7 +252,10 @@ void _Pragma( "entrypoint" ) minver_main()
 int main( void )
 {
   minver_init();
-  minver_main();
+
+    m5_reset_stats(0, 0);
+    minver_main();
+    m5_dump_stats(0, 0);
 
   return ( minver_return() );
 }

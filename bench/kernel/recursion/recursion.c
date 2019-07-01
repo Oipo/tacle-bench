@@ -17,7 +17,7 @@
   License: May be used, modified, and re-distributed freely.
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
    Global Variables
@@ -67,6 +67,8 @@ void _Pragma( "entrypoint" ) recursion_main( void )
 int main( void )
 {
   recursion_init();
-  recursion_main();
+    m5_reset_stats(0, 0);
+    recursion_main();
+    m5_dump_stats(0, 0);
   return ( recursion_return() );
 }

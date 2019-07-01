@@ -21,6 +21,7 @@
 */
 
 #include "pi.h"
+#include "gem5/m5ops.h"
 
 #define deg2rad(d) ((d)*PI/180)
 
@@ -85,6 +86,8 @@ void _Pragma( "entrypoint" ) deg2rad_main( void )
 int main( void )
 {
   deg2rad_init();
-  deg2rad_main();
+    m5_reset_stats(0, 0);
+    deg2rad_main();
+    m5_dump_stats(0, 0);
   return deg2rad_return();
 }

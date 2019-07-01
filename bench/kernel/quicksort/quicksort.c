@@ -25,7 +25,7 @@
 /*
   Include section
 */
-
+#include "gem5/m5ops.h"
 #include "quicksort.h"
 #include "quicksortlibm.h"
 #include "quicksortstdlib.h"
@@ -239,7 +239,9 @@ void _Pragma ( "entrypoint" ) quicksort_main( void )
 int main( void )
 {
   quicksort_init();
-  quicksort_main();
+    m5_reset_stats(0, 0);
+    quicksort_main();
+    m5_dump_stats(0, 0);
 
   return ( quicksort_return() - 1527923179 != 0 );
 }

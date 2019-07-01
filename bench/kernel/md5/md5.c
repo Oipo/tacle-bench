@@ -21,7 +21,7 @@
 
 // Description: This is the MD5 algorithm comming form the Diffie-Hellman
 // application in the Netbench benchmark suite
-
+#include "gem5/m5ops.h"
 #define RANDOM_BYTES_NEEDED 256
 
 // Here, it can be defined how many keys should be exchanged
@@ -625,7 +625,11 @@ void _Pragma( "entrypoint" ) md5_main( void )
 int main( void )
 {
   md5_init();
-  md5_main();
+
+    m5_reset_stats(0, 0);
+    md5_main();
+    m5_dump_stats(0, 0);
+
   // printf("%d\n", ret);
   return md5_return();
 }

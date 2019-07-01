@@ -125,8 +125,10 @@ void* ros_th5_thread5( void* arg ) {
 int main( void )
 {
   ros_th5_init();
-  
-  ros_th5_main();
+    m5_reset_stats(0, 0);
+    ros_th5_main();
+    m5_dump_stats(0, 0);
+    printf("done th5\n");
   
   return ros_th5_return();  
 }

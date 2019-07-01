@@ -35,6 +35,9 @@
   Forward declaration of functions
 */
 
+
+#include "gem5/m5ops.h"
+
 void binarysearch_initSeed( void );
 long binarysearch_randomInteger( void );
 void binarysearch_init( void );
@@ -150,7 +153,9 @@ void _Pragma( "entrypoint" ) binarysearch_main( void )
 int main( void )
 {
   binarysearch_init();
+  m5_reset_stats(0, 0);
   binarysearch_main();
+  m5_dump_stats(0, 0);
 
   return ( binarysearch_return() - ( -1 ) != 0 );
 }

@@ -20,7 +20,7 @@
   License: may be used, modified, and re-distributed freely
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -696,7 +696,9 @@ void _Pragma( "entrypoint" ) cover_main( void )
 int main( void )
 {
   cover_init();
-  cover_main();
+    m5_reset_stats(0, 0);
+    cover_main();
+    m5_dump_stats(0, 0);
 
   return cover_return();
 }

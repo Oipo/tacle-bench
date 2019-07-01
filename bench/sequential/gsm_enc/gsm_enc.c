@@ -5,6 +5,7 @@
    details.  THERE IS ABSOLUTELY NO WARRANTY FOR THIS SOFTWARE.
 */
 
+#include "gem5/m5ops.h"
 #include "private.h"
 
 /*
@@ -2218,6 +2219,8 @@ void _Pragma( "entrypoint" ) gsm_enc_main( void )
 int main( void )
 {
   gsm_enc_init();
-  gsm_enc_main();
+    m5_reset_stats(0, 0);
+    gsm_enc_main();
+    m5_dump_stats(0, 0);
   return ( gsm_enc_return() );
 }

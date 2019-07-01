@@ -55,7 +55,7 @@
 
 */
 
-
+#include "gem5/m5ops.h"
 /*
   Macro definitions
 */
@@ -163,7 +163,9 @@ void _Pragma ( "entrypoint" ) matrix1_main( void )
 int main( void )
 {
   matrix1_init();
-  matrix1_main();
+    m5_reset_stats(0, 0);
+    matrix1_main();
+    m5_dump_stats(0, 0);
 
   return matrix1_return();
 }

@@ -20,6 +20,8 @@
 
 */
 
+#include "gem5/m5ops.h"
+
 /*
   Forward declaration of functions
 */
@@ -94,7 +96,9 @@ void _Pragma( "entrypoint" ) fac_main ()
 int main ( void )
 {
   fac_init();
-  fac_main();
+    m5_reset_stats(0, 0);
+    fac_main();
+    m5_dump_stats(0, 0);
 
   return ( fac_return() );
 }

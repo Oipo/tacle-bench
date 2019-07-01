@@ -46,7 +46,7 @@
   License: may be used, modified, and re-distributed freely
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -157,7 +157,9 @@ void _Pragma( "entrypoint" ) iir_main( void )
 int main( void )
 {
   iir_init();
-  iir_main();
+    m5_reset_stats(0, 0);
+    iir_main();
+    m5_dump_stats(0, 0);
 
   return ( iir_return() - 400 != 0 );
 }

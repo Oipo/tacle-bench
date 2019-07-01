@@ -25,6 +25,8 @@
 
 */
 
+#include "gem5/m5ops.h"
+
 /*
   Forward declaration of functions
 */
@@ -164,7 +166,9 @@ void filterbank_core( float r[ 256 ],
 int main( void )
 {
   filterbank_init();
-  filterbank_main();
+    m5_reset_stats(0, 0);
+    filterbank_main();
+    m5_dump_stats(0, 0);
 
   return filterbank_return();
 }

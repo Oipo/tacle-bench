@@ -28,7 +28,7 @@
 /*
   Include section
 */
-
+#include "gem5/m5ops.h"
 #include "jpeglib.h"
 
 
@@ -706,7 +706,9 @@ void _Pragma ( "entrypoint" ) cjpeg_transupp_main( void )
 int main( void )
 {
   cjpeg_transupp_init();
-  cjpeg_transupp_main();
+    m5_reset_stats(0, 0);
+    cjpeg_transupp_main();
+    m5_dump_stats(0, 0);
 
   return ( cjpeg_transupp_return() - 660 != 0 );
 }

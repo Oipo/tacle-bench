@@ -125,8 +125,10 @@ void* ros_th4_thread4( void* arg ) {
 int main( void )
 {
   ros_th4_init();
-  
-  ros_th4_main();
+    m5_reset_stats(0, 0);
+    ros_th4_main();
+    m5_dump_stats(0, 0);
+    printf("done th4\n");
   
   return ros_th4_return();  
 }

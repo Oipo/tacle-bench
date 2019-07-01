@@ -17,6 +17,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 #include "input.h"
 
 /*
@@ -132,8 +133,8 @@ int dijkstra_qcount( void )
 int dijkstra_find( int chStart, int chEnd )
 {
   int ch;
-  int prev, node;
-  int cost, dist;
+  int prev, node = 0;
+  int cost, dist = 0;
   int i;
 
   _Pragma( "loopbound min 100 max 100" )
@@ -191,7 +192,9 @@ void _Pragma( "entrypoint" ) dijkstra_main( void )
 int main( void )
 {
   dijkstra_init();
-  dijkstra_main();
+    m5_reset_stats(0, 0);
+    dijkstra_main();
+    m5_dump_stats(0, 0);
 
   return ( dijkstra_return() );
 }

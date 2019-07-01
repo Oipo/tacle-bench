@@ -24,6 +24,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 #include "bits.h"
 #include "arithm.h"
 #include "ammunition_stdlib.h"
@@ -1173,7 +1174,9 @@ void _Pragma( "entrypoint" ) ammunition_main( void )
 int main( void )
 {
   ammunition_init();
-  ammunition_main();
+    m5_reset_stats(0, 0);
+    ammunition_main();
+    m5_dump_stats(0, 0);
 
   return ( ammunition_return() );
 }

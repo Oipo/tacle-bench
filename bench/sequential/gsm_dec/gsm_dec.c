@@ -20,6 +20,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 #include "gsm.h"
 #include "add.h"
 #include "data.h"
@@ -751,6 +752,8 @@ void _Pragma( "entrypoint" ) gsm_dec_main( void )
 int main( void )
 {
   gsm_dec_init();
-  gsm_dec_main();
+    m5_reset_stats(0, 0);
+    gsm_dec_main();
+    m5_dump_stats(0, 0);
   return ( gsm_dec_return() );
 }

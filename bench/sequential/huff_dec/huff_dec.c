@@ -43,6 +43,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 
 /*
   Declaration of types
@@ -377,6 +378,8 @@ void _Pragma( "entrypoint" ) huff_dec_main( void )
 int main( void )
 {
   huff_dec_init();
-  huff_dec_main();
+    m5_reset_stats(0, 0);
+    huff_dec_main();
+    m5_dump_stats(0, 0);
   return ( huff_dec_return() );
 }

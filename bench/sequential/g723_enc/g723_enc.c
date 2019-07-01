@@ -20,7 +20,7 @@
 /*
   Declaration of data types
 */
-
+#include "gem5/m5ops.h"
 /*
    The following is the definition of the state structure
    used by the G.721/G.723 encoder and decoder to preserve their internal
@@ -871,7 +871,9 @@ void _Pragma( "entrypoint" ) g723_enc_main()
 int main( void )
 {
   g723_enc_init();
-  g723_enc_main();
+    m5_reset_stats(0, 0);
+    g723_enc_main();
+    m5_dump_stats(0, 0);
 
   return ( g723_enc_return() );
 }

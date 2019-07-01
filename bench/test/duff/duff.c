@@ -17,7 +17,7 @@
   License: may be used, modified, and re-distributed freely
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -126,7 +126,9 @@ void _Pragma( "entrypoint" ) duff_main( void )
 int main( void )
 {
   duff_init();
-  duff_main();
+    m5_reset_stats(0, 0);
+    duff_main();
+    m5_dump_stats(0, 0);
 
   return ( duff_return() );
 }

@@ -19,7 +19,7 @@
   License: this code is FREE with no restrictions
 
 */
-
+#include "gem5/m5ops.h"
 
 void basicmath_memcpy( void *a, const void *b, int c )
 {

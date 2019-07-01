@@ -34,7 +34,7 @@
     purpose.  It is provided "as is" without express or implied warranty.
 */
 
-
+#include "gem5/m5ops.h"
 #include "epic.h"
 
 #define X_SIZE  64
@@ -1130,7 +1130,9 @@ int epic_return()
 int main( void )
 {
   epic_init();
-  epic_main();
+    m5_reset_stats(0, 0);
+    epic_main();
+    m5_dump_stats(0, 0);
 
   return epic_return();
 }

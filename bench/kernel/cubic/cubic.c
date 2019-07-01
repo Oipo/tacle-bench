@@ -28,7 +28,7 @@
 
 #include "wcclibm.h"
 #include "snipmath.h"
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -151,6 +151,8 @@ void cubic_solveCubic( float a, float b, float c, float d,
 int main( void )
 {
   cubic_init();
-  cubic_main();
+    m5_reset_stats(0, 0);
+    cubic_main();
+    m5_dump_stats(0, 0);
   return cubic_return();
 }

@@ -23,6 +23,8 @@
 
 */
 
+#include "gem5/m5ops.h"
+
 /*
   Macro definitions
 */
@@ -1272,7 +1274,9 @@ void _Pragma ( "entrypoint" ) statemate_main( void )
 int main ( void )
 {
   statemate_init();
-  statemate_main();
+    m5_reset_stats(0, 0);
+    statemate_main();
+    m5_dump_stats(0, 0);
 
   return statemate_return();
 }

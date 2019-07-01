@@ -25,6 +25,7 @@
   Include section
 */
 
+#include "gem5/m5ops.h"
 #include "h264_dec.h"
 
 
@@ -597,7 +598,9 @@ void _Pragma( "entrypoint" )  h264_dec_main( void )
 int main( void )
 {
   h264_dec_init();
-  h264_dec_main();
+    m5_reset_stats(0, 0);
+    h264_dec_main();
+    m5_dump_stats(0, 0);
 
   return ( h264_dec_return() );
 }

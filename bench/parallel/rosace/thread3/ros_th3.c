@@ -125,8 +125,10 @@ void* ros_th3_thread3( void* arg ) {
 int main( void )
 {
   ros_th3_init();
-  
-  ros_th3_main();
+    m5_reset_stats(0, 0);
+    ros_th3_main();
+    m5_dump_stats(0, 0);
+    printf("done th3\n");
   
   return ros_th3_return();  
 }

@@ -157,6 +157,7 @@
    steps to FindAnagram.
 */
 int printf(const char * restrict format, ... );
+#include "gem5/m5ops.h"
 #include "anagram_ctype.h"
 #include "anagram_stdlib.h"
 #include "anagram_strings.h"
@@ -658,7 +659,9 @@ void _Pragma( "entrypoint" ) anagram_main( void )
 int main( void )
 {
   anagram_init();
-  anagram_main();
+    m5_reset_stats(0, 0);
+    anagram_main();
+    m5_dump_stats(0, 0);
 
   return anagram_return();
 }

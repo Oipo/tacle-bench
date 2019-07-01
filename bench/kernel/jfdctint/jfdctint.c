@@ -45,6 +45,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 
 /*  COMMENTS: Long calculation sequences (i.e., long basic blocks),      */
 /*            single-nested loops.                                       */
@@ -313,7 +314,10 @@ void _Pragma ( "entrypoint" ) jfdctint_main( void )
 int main( void )
 {
   jfdctint_init();
-  jfdctint_main();
+
+    m5_reset_stats(0, 0);
+    jfdctint_main();
+    m5_dump_stats(0, 0);
 
   return ( jfdctint_return() );
 }

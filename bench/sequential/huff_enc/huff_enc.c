@@ -44,11 +44,12 @@
 
 */
 
+#include "gem5/m5ops.h"
 
 /*
   Declaration of types
 */
-int printf(const char * restrict format, ... );
+//int printf(const char * restrict format, ... );
 int counter1 = 0;
 typedef struct huff_enc_s_tree {
   unsigned int byte; /* A byte has to be coded as an unsigned integer to
@@ -367,7 +368,7 @@ void huff_enc_qsort( char *a, unsigned long n, unsigned long es )       //wird i
   char *pi, *pj, *pn;
   unsigned int flowfactdummy = 0;
   counter1++;
-  printf("%d\n", counter1);
+  //printf("%d\n", counter1);
   _Pragma( "loopbound min 0 max 7" )
   while ( n > 1 ) {
     if ( n > 10 )
@@ -588,6 +589,8 @@ void _Pragma( "entrypoint" ) huff_enc_main()
 int main( void )
 {
   huff_enc_init();
-  huff_enc_main();
+    m5_reset_stats(0, 0);
+    huff_enc_main();
+    m5_dump_stats(0, 0);
   return ( huff_enc_return() );
 }

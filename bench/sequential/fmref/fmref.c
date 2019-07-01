@@ -4,6 +4,7 @@
   $Id: fmref.c,v 1.2 2010-10-04 21:21:26 garus Exp $
 */
 
+#include "gem5/m5ops.h"
 #include "wcclibm.h"
 #ifndef M_PI
 #define M_PI        3.1415926535897932384626433832795
@@ -75,7 +76,9 @@ int fmref_return( void )
 int main( void )
 {
   fmref_init();
-  fmref_main();
+    m5_reset_stats(0, 0);
+    fmref_main();
+    m5_dump_stats(0, 0);
   return fmref_return();
 }
 

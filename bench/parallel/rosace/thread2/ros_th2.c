@@ -148,8 +148,10 @@ void* ros_th2_thread2( void* arg ) {
 int main( void )
 {
   ros_th2_init();
-  
-  ros_th2_main();
+    m5_reset_stats(0, 0);
+    ros_th2_main();
+    m5_dump_stats(0, 0);
+    printf("done th2\n");
   
   return ros_th2_return();  
 }

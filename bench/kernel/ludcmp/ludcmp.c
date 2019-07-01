@@ -26,7 +26,7 @@
   III-4. ludcmp.c : Simultaneous Linear Equations by LU Decomposition
                     (from the book C Programming for EEs by Hyun Soon Ahn)
 */
-
+#include "gem5/m5ops.h"
 /*
   Forward declaration of functions
 */
@@ -171,7 +171,8 @@ void _Pragma( "entrypoint" ) ludcmp_main( void )
 int main( void )
 {
   ludcmp_init();
-  ludcmp_main();
-
+    m5_reset_stats(0, 0);
+    ludcmp_main();
+    m5_dump_stats(0, 0);
   return ( ludcmp_return() );
 }

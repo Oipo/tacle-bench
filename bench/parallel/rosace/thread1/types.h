@@ -50,7 +50,11 @@
 #define REAL_TYPE double
 #endif
 
+#ifndef __cplusplus
 typedef unsigned long long uint64_t;
+#else
+#include <cstdint>
+#endif
 
 /* we need forward declaration only in order
  * to avoid redefinition in assemblage_vX generated headers

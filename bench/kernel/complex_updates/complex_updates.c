@@ -30,6 +30,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 #define N 16
 
 
@@ -130,7 +131,9 @@ int main( void )
 {
   complex_updates_init();
 
-  complex_updates_main();
+    m5_reset_stats(0, 0);
+    complex_updates_main();
+    m5_dump_stats(0, 0);
 
   return complex_updates_return();
 }

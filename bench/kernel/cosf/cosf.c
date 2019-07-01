@@ -20,7 +20,7 @@
 */
 
 #include "wcclibm.h"
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -80,7 +80,9 @@ void _Pragma( "entrypoint" ) cosf_main( void )
 int main( void )
 {
   cosf_init();
-  cosf_main();
+    m5_reset_stats(0, 0);
+    cosf_main();
+    m5_dump_stats(0, 0);
   return cosf_return();
 }
 

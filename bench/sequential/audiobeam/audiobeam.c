@@ -23,6 +23,7 @@
   Include section
 */
 
+#include "gem5/m5ops.h"
 #include "audiobeamlibm.h"
 #include "audiobeamlibmalloc.h"
 #include "audiobeam.h"
@@ -578,7 +579,9 @@ void _Pragma( "entrypoint" ) audiobeam_main( void )
 int main( void )
 {
   audiobeam_init();
-  audiobeam_main();
+    m5_reset_stats(0, 0);
+    audiobeam_main();
+    m5_dump_stats(0, 0);
 
   return ( audiobeam_return() );
 }

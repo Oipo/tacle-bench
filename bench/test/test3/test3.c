@@ -22,7 +22,7 @@
   License: GPL
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -5072,7 +5072,9 @@ void _Pragma ( "entrypoint" ) test3_main( void )
 int main()
 {
   test3_init();
-  test3_main();
+    m5_reset_stats(0, 0);
+    test3_main();
+    m5_dump_stats(0, 0);
 
   return ( test3_return() - 1377313800 != 0 );
 }

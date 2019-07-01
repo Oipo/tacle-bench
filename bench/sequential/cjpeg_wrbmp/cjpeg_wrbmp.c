@@ -24,6 +24,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 #include "cdjpeg.h"
 
 #ifdef CJPEG_WRBMP_BMP_SUPPORTED
@@ -210,7 +211,9 @@ int cjpeg_wrbmp_return()
 int main( void )
 {
   cjpeg_wrbmp_init();
-  cjpeg_wrbmp_main();
+    m5_reset_stats(0, 0);
+    cjpeg_wrbmp_main();
+    m5_dump_stats(0, 0);
 
   return ( cjpeg_wrbmp_return() );
 }

@@ -19,7 +19,7 @@
   License: may be used, modified, and re-distributed freely
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -192,7 +192,9 @@ void _Pragma( "entrypoint" ) fir2dim_main()
 int main( void )
 {
   fir2dim_init();
-  fir2dim_main();
+    m5_reset_stats(0, 0);
+    fir2dim_main();
+    m5_dump_stats(0, 0);
 
   return ( fir2dim_return() );
 }

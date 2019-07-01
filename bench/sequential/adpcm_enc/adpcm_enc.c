@@ -25,7 +25,7 @@
            SNU-RT Benchmark Suite must be acknowledged
 
 */
-
+#include "gem5/m5ops.h"
 
 /* common sampling rate for sound cards on IBM/PC */
 #define SAMPLE_RATE 11025
@@ -748,7 +748,9 @@ void _Pragma( "entrypoint" ) adpcm_enc_main( void )
 int main( void )
 {
   adpcm_enc_init();
-  adpcm_enc_main();
+    m5_reset_stats(0, 0);
+    adpcm_enc_main();
+    m5_dump_stats(0, 0);
 
   return adpcm_enc_return();
 }

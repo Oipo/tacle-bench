@@ -26,7 +26,7 @@
 
 #include "liftlibio.h"
 #include "liftlibcontrol.h"
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -126,7 +126,9 @@ void  _Pragma( "entrypoint" ) lift_main()
 int main( void )
 {
   lift_init();
-  lift_main();
+    m5_reset_stats(0, 0);
+    lift_main();
+    m5_dump_stats(0, 0);
 
   return ( lift_return() );
 }

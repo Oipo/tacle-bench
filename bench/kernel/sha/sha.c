@@ -17,6 +17,7 @@
 
 */
 
+#include "gem5/m5ops.h"
 #include "memcpy.h"
 #include "memset.h"
 #include "sha.h"
@@ -214,6 +215,8 @@ int sha_return( void )
 int main ( void )
 {
   sha_init();
-  sha_main();
+    m5_reset_stats(0, 0);
+    sha_main();
+    m5_dump_stats(0, 0);
   return ( sha_return() );
 }

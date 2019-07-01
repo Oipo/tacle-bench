@@ -152,8 +152,11 @@ void* ros_th1_thread1( void* arg ) {
 int main( void )
 {
   ros_th1_init();
-  
-  ros_th1_main();
+    m5_reset_stats(0, 0);
+    ros_th1_main();
+    m5_dump_stats(0, 0);
+
+    printf("done th1\n");
   
   return ros_th1_return();  
 }

@@ -269,6 +269,7 @@
 
   \**********************************************************************/
 
+#include "gem5/m5ops.h"
 #include "wcclibm.h"
 #include "wccfile.h"
 #include "wccmalloc.h"
@@ -838,7 +839,7 @@ void susan_thin( char *r, uchar *mid, int x_size, int y_size )
         b01, b12, b21, b10,
         p1, p2, p3, p4,
         b00, b02, b20, b22,
-        m, n, a, b, x, y, i, j;
+        m, n, a = 0, b = 0, x, y, i, j;
   uchar *mp;
 
   _Pragma( "loopbound min 87 max 87" )
@@ -2504,7 +2505,9 @@ int susan_return( void )
 int main( void )
 {
   susan_init();
-  susan_main();
+    m5_reset_stats(0, 0);
+    susan_main();
+    m5_dump_stats(0, 0);
 
   return susan_return();
 }

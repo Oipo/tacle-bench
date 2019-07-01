@@ -34,6 +34,7 @@
 #include "powerwindow_HeaderFiles/powerwindow_powerwindow_control.h"  /* PW passenger control Model's header file */
 #include "powerwindow_HeaderFiles/powerwindow_rtwtypes.h"
 #include "powerwindow_HeaderFiles/powerwindow_model_reference_types.h"
+#include "gem5/m5ops.h"
 /*
   Forward declaration of functions
 */
@@ -730,7 +731,11 @@ int powerwindow_return( void )
 int main( void )
 {
   powerwindow_init();
-  powerwindow_main();
+
+    m5_reset_stats(0, 0);
+    powerwindow_main();
+    m5_dump_stats(0, 0);
+
   return powerwindow_return();
 }
 

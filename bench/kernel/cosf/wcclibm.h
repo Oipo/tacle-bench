@@ -34,7 +34,8 @@
 #ifndef _WCCLIBM
 #define _WCCLIBM
 
-#define int32_t      int
+#include <stdint.h>
+
 #define u_int32_t    unsigned int
 
 // Often used variables/consts

@@ -66,6 +66,8 @@
 
 */
 
+#include "gem5/m5ops.h"
+
 #define N_FFT 1024
 #define NUMBER_OF_BITS 13    /* fract format 1.NUMBER_OF_BITS = 1.13 */
 
@@ -299,6 +301,7 @@ void fft_init( void )
 
 }
 
+#include <stdio.h>
 
 int fft_return( void )
 {
@@ -309,6 +312,7 @@ int fft_return( void )
   for ( i = 0; i < 2 * N_FFT; ++i )
     check_sum += fft_input_data[ i ];
 
+  printf("sum: %i\n", check_sum);
   return check_sum != 3968;
 }
 
@@ -327,7 +331,9 @@ int main( void )
 {
   fft_init();
 
-  fft_main();
+    m5_reset_stats(0, 0);
+    fft_main();
+    m5_dump_stats(0, 0);
 
   return fft_return();
 }

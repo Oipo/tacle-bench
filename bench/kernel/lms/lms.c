@@ -23,6 +23,8 @@
 
 */
 
+#include "gem5/m5ops.h"
+
 /*
   Copyright (c) 2016 Jörg Mische
 
@@ -95,7 +97,9 @@ void lms_init( void )
     // remap v1 and v2 to two Gaussian numbers
     double noise = 1 / r; // approximation of sqrt(0.96) * sqrt(-log(r)/r);
     lms_input[ k + 1 ] = lms_sinus( k )   + noise * v2;
-    lms_input[ k + 2 ] = lms_sinus( k + 1 ) + noise * v1;
+    if(k + 2 < N) {
+        lms_input[k + 2] = lms_sinus(k + 1) + noise * v1;
+    }
   }
 
 }
@@ -176,7 +180,9 @@ int lms_return( void )
 int main()
 {
   lms_init();
-  lms_main();
+    m5_reset_stats(0, 0);
+    lms_main();
+    m5_dump_stats(0, 0);
   return ( lms_return() );
 }
 

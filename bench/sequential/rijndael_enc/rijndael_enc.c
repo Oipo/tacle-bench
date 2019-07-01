@@ -38,6 +38,7 @@
   -----------------------------------------------------------------------
 */
 
+#include "gem5/m5ops.h"
 #include "aes.h"
 #include "rijndael_enc_libc.h"
 
@@ -225,7 +226,9 @@ void _Pragma( "entrypoint" ) rijndael_enc_main( void )
 int main( void )
 {
   rijndael_enc_init();
-  rijndael_enc_main();
+    m5_reset_stats(0, 0);
+    rijndael_enc_main();
+    m5_dump_stats(0, 0);
 
   return ( rijndael_enc_return() );
 }

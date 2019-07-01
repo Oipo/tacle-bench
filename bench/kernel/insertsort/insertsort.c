@@ -26,7 +26,7 @@
   This program is derived from the SNU-RT Benchmark Suite for Worst
   Case Timing Analysis by Sung-Soo Lim
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -133,7 +133,9 @@ void _Pragma( "entrypoint" ) insertsort_main()
 int main( void )
 {
   insertsort_init();
-  insertsort_main();
+    m5_reset_stats(0, 0);
+    insertsort_main();
+    m5_dump_stats(0, 0);
   return ( insertsort_return() );
 }
 

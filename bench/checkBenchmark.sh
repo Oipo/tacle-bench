@@ -1,11 +1,12 @@
 #!/bin/bash
 
-COMPILER=gcc # Please adapt this line to your favorite compiler.
+COMPILER=aarch64-linux-gnu-gcc # Please adapt this line to your favorite compiler.
 #COMPILER=patmos-clang
+#COMPILER=cc
 
-OPTIONS=" -Wall -Wno-unknown-pragmas -Werror "
-
-EXEC= # Adapt if the executable is to be executed via another program
+OPTIONS=" -Wall -Wno-unknown-pragmas -Werror -static -O2 -I /home/oipo/Programming/linux-kernel-module-cheat/submodules/gem5/include/ "
+M5_LIB="/home/oipo/Programming/linux-kernel-module-cheat/submodules/gem5/util/m5/libm5.a "
+EXEC="/home/oipo/Programming/linux-kernel-module-cheat/out/gem5/default/build/ARM/gem5.opt /home/oipo/Programming/linux-kernel-module-cheat/submodules/gem5/configs/example/arm/edify_se.py  " # Adapt if the executable is to be executed via another program
 #EXEC=valgrind\ -q
 #EXEC=pasim
 
@@ -22,21 +23,14 @@ for dir in */; do
     for BENCH in */; do
         cd "$BENCH"
                 
-        printf "Checking ${BENCH} ..."
-        if [ -f a.out ]; then
-            rm a.out
-        fi
-        
-        if [ -f *.o ]; then
-            rm *.o
-        fi
-        
+        printf "Checking ${BENCH} ...\n"
+        #printf "$COMPILER $OPTIONS *.c $M5_LIB\n"
+	#$COMPILER $OPTIONS *.c $M5_LIB
         
         # Please remove '&>/dev/null' to identify the warnings (if any)
-        $COMPILER $OPTIONS *.c  &>/dev/null
         
         if [ -f a.out ]; then
-            $EXEC ./a.out &>/dev/null
+            $EXEC ./a.out
             RETURNVALUE=$(echo $?)
             if [ $RETURNVALUE -eq 0 ]; then
                 printf "passed. \n"

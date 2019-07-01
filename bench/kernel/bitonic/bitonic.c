@@ -17,7 +17,7 @@
   License: MIT
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -151,7 +151,9 @@ void _Pragma ( "entrypoint" ) bitonic_main( void )
 int main( void )
 {
   bitonic_init();
-  bitonic_main();
+    m5_reset_stats(0, 0);
+    bitonic_main();
+    m5_dump_stats(0, 0);
 
   return ( bitonic_return() );
 }

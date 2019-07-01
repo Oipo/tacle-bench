@@ -19,6 +19,8 @@
 
 */
 
+#include "gem5/m5ops.h"
+
 /* Remove the following #define for actual WCET analyses! */
 /*
   #define PROFILING
@@ -975,7 +977,9 @@ int petrinet_return( void )
 
 int main( void )
 {
-  petrinet_main();
+    m5_reset_stats(0, 0);
+    petrinet_main();
+    m5_dump_stats(0, 0);
 
   return ( petrinet_return() );
 }

@@ -16,6 +16,8 @@
 
 */
 
+#include "gem5/m5ops.h"
+
 /* A read from this address will result in an known value of 1 */
 #define KNOWN_VALUE 1
 #define NDES_WORSTCASE 1
@@ -384,7 +386,9 @@ void _Pragma( "entrypoint" ) ndes_main()
 int main( void )
 {
   ndes_init();
-  ndes_main();
+    m5_reset_stats(0, 0);
+    ndes_main();
+    m5_dump_stats(0, 0);
 
   return ( ndes_return() );
 }

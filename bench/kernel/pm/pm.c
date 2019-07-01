@@ -26,6 +26,7 @@
   Include section
 */
 
+#include "gem5/m5ops.h"
 #include "pm_math.h"
 #include "pm_string.h"
 
@@ -737,7 +738,10 @@ int pm_kernel( pm_data_t *pmdata )
 int main( void )
 {
   pm_init();
-  pm_main();
+
+    m5_reset_stats(0, 0);
+    pm_main();
+    m5_dump_stats(0, 0);
 
   return pm_return();
 }

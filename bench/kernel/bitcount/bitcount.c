@@ -19,6 +19,7 @@
 
 
 #include "bitops.h"
+#include "gem5/m5ops.h"
 
 #define FUNCS  8
 
@@ -140,7 +141,10 @@ void _Pragma( "entrypoint" ) bitcount_main()
 int main( void )
 {
   bitcount_init();
-  bitcount_main();
+
+    m5_reset_stats(0, 0);
+    bitcount_main();
+    m5_dump_stats(0, 0);
 
   return ( bitcount_return() );
 }

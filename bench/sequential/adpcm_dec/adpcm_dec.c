@@ -23,7 +23,7 @@
             the SNU-RT Benchmark Suite must be acknowledged
 
 */
-
+#include "gem5/m5ops.h"
 /*
     This program is derived from the SNU-RT Benchmark Suite for Worst
     Case Timing Analysis by Sung-Soo Lim
@@ -704,7 +704,9 @@ void _Pragma( "entrypoint" ) adpcm_dec_main( void )
 int main( void )
 {
   adpcm_dec_init();
-  adpcm_dec_main();
+    m5_reset_stats(0, 0);
+    adpcm_dec_main();
+    m5_dump_stats(0, 0);
 
   return ( adpcm_dec_return() );
 }

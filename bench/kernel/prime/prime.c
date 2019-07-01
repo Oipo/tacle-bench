@@ -17,7 +17,7 @@
   License: may be used, modified, and re-distributed freely
 
 */
-
+#include "gem5/m5ops.h"
 
 /*
   Forward declaration of functions
@@ -131,7 +131,10 @@ void _Pragma( "entrypoint" ) prime_main()
 int main( void )
 {
   prime_init();
-  prime_main();
+
+    m5_reset_stats(0, 0);
+    prime_main();
+    m5_dump_stats(0, 0);
 
   return ( prime_return() ) ;
 }
